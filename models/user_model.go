@@ -32,7 +32,7 @@ func (userModel UserModel) Login(reqUser *entities.User) (resultUserLogin *entit
 	var userLogin entities.UserLogin
 	userModel.Db.Where(&entities.User{Mobile_no: reqUser.Mobile_no}).Select("user_id").First(&reqUser).Scan(&user)
 	var status string
-	if(user==entities.User{})	{
+	if user==entities.User{}	{
 		status="unregistered"
 	}	else	{
 		

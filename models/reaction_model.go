@@ -23,8 +23,7 @@ func (reactionModel ReactionModel) reaction(reqReaction *entities.Reaction) (isF
 		err=reactionModel.Db.Create(reqReaction).Count(&count).Error
 	}	else if reaction.Status==reqReaction.Status	{
 		isFailed=false
-	}	else	{
-		
+	}	else	{		
 		if reaction.Status=="remove"	{
 			err=reactionModel.Db.Where(map[string]string{"post_id": reqReaction.Post_id, "user_id": reqReaction.User_id}).Delete(&Reaction{}).Count(&count).Error			
 		}	else	{
@@ -36,4 +35,3 @@ func (reactionModel ReactionModel) reaction(reqReaction *entities.Reaction) (isF
 	}
 	return
 }
-
